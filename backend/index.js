@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
  
-mongoose.connect(process.env.MONGO).then( ////////to check if it is connected or not 
+mongoose.connect(process.env.MONGO).then( ////////to check if it is c onnected or not 
     ()=>{
         console.log('connected to mongodb !');
     }).catch((err)=>{
