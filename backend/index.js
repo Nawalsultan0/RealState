@@ -19,10 +19,21 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/api/user', userRouter  )
-
 
 app.listen(3000, () => {
   console.log('server is running on port 3000 !');
 });
 
+app.use('/api/user', userRouter );
+
+///// middle ware code to show the eroor ina sophisticated way /////
+
+app.use( (error,req,res,next)=>{
+    const statusCode = error.statusCode || 500;
+    const message = error.message||'Internal server error';
+    return res.status(statusCode).json({
+      success: false,
+      statusCode,
+      message,
+    });
+})
